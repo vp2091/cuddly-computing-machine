@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Business hours automation</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script src="{{{appclient}}}"></script>
+  <script>
+    (function () {
+      function loadFallbackClient() {
+        if (window.app && typeof window.app.initialized === "function") return;
+        if (document.getElementById("freshworks-client-fallback")) return;
+        var script = document.createElement("script");
+        script.id = "freshworks-client-fallback";
+        script.src = "https://static.freshdev.io/fdk/2.0/assets/fresh_client.js";
+        script.onload = function () { document.dispatchEvent(new CustomEvent("freshworks-client-fallback-loaded")); };
+        script.onerror = function () { document.dispatchEvent(new CustomEvent("freshworks-client-fallback-failed")); };
+        document.head.appendChild(script);
+      }
+      window.__loadFreshworksClientFallback = loadFallbackClient;
+      window.setTimeout(loadFallbackClient, 300);
+      window.setTimeout(loadFallbackClient, 1500);
+    })();
+  </script>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="logo">BH</div>
+      <div>
+        <h1>Business hours automation</h1>
+        <p>Configure ticket status changes using Freshdesk business hours.</p>
+      </div>
+    </header>
+
+    <div id="status" class="status info">Loading app details...</div>
+
+    <section id="automationCard" class="card compact">
+      <div class="section-title">
+        <h2>Automation rule</h2>
+        <button id="refresh" class="secondary" type="button">Refresh</button>
+      </div>
+
+      <form id="settingsForm" class="form-grid">
+        <label class="field full">
+          <span>Automation status</span>
+          <select id="automationState">
+            <option value="disabled">Disabled - automation stays off</option>
+            <option value="enabled">Enabled - automation stays on</option>
+          </select>
+        </label>
+
+        <div id="calendarInlineInfo" class="calendar-inline field full">Freshdesk Business Hours details will appear after loading.</div>
+
+        <label class="field">
+          <span>When ticket status is</span>
+          <select id="triggerStatusName"></select>
+        </label>
+
+        <label class="field">
+          <span>Wait this many business hours</span>
+          <input id="delayBusinessHours" type="number" min="1" step="1" placeholder="Select hours">
+        </label>
+
+        <label class="field">
+          <span>Change status to</span>
+          <select id="targetStatusName"></select>
+        </label>
+
+        <div class="button-row full">
+          <button id="saveSettings" class="primary" type="submit">Save automation rule</button>
+        </div>
+      </form>
+
+      <p class="hint">When you save this rule, the app automatically scans and schedules existing matching tickets. After that, any ticket that changes to the selected trigger status will be scheduled automatically.</p>
+    </section>
+
+    <section id="currentTicketCard" class="card compact" hidden>
+      <h2>Current ticket timer</h2>
+      <dl class="meta" id="ticketMeta">
+        <div><dt>Ticket</dt><dd>-</dd></div>
+        <div><dt>Current status</dt><dd>-</dd></div>
+        <div><dt>Timer</dt><dd>-</dd></div>
+        <div><dt>Due time</dt><dd>-</dd></div>
+      </dl>
+      <div class="button-row">
+        <button id="removeCurrentAutomation" class="danger" type="button">Remove automation</button>
+      </div>
+      <p class="hint">This removes automation from the current ticket only. The ticket itself will not be changed.</p>
+    </section>
+
+    <section id="scheduledTicketsCard" class="card compact">
+      <h2>Tickets currently scheduled</h2>
+      <div class="button-row list-actions">
+        <button id="removeAllScheduled" class="danger" type="button">Remove automation from all scheduled tickets</button>
+      </div>
+      <div id="affectedTickets" class="list empty">No tickets are currently scheduled by this app.</div>
+      <p class="hint">This list shows tickets with an active Freshdesk business-hours timer.</p>
+    </section>
+
+    <section class="card compact warnings" id="warningsCard" hidden>
+      <h2>Warnings</h2>
+      <ul id="warnings"></ul>
+    </section>
+
+    <footer class="app-footer">
+      <a href="mailto:vprasad@esgenio.com" aria-label="Email Vishal Prasad">Developed and managed by Vishal</a>
+    </footer>
+  </main>
+  <script src="scripts/app.js"></script>
+</body>
+</html>
