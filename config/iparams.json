@@ -1,0 +1,26 @@
+{
+  "freshdesk_domain": {
+    "display_name": "Freshdesk domain",
+    "description": "Enter your Freshdesk subdomain or full domain. Examples: rampforfe or rampforfe.freshdesk.com. Do not use https://, slashes, custom CNAME, or Freshworks organization URL.",
+    "type": "text",
+    "required": true,
+    "secure": false,
+    "default_value": "",
+    "modules": [
+      "common",
+      "support_ticket"
+    ]
+  },
+  "freshdesk_api_key": {
+    "display_name": "Freshdesk admin API key",
+    "description": "Use a Freshdesk helpdesk admin user API key. Required for Business Hours, ticket status lookup, and status updates.",
+    "type": "text",
+    "required": true,
+    "secure": true,
+    "default_value": "",
+    "modules": [
+      "common",
+      "support_ticket"
+    ]
+  }
+}

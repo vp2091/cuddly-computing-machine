@@ -1,0 +1,93 @@
+{
+  "getTicket": {
+    "schema": {
+      "protocol": "https",
+      "method": "GET",
+      "host": "<%= context.host %>",
+      "path": "/api/v2/tickets/<%= context.ticketId %>",
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.freshdesk_api_key + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    },
+    "options": {}
+  },
+  "updateTicket": {
+    "schema": {
+      "protocol": "https",
+      "method": "PUT",
+      "host": "<%= context.host %>",
+      "path": "/api/v2/tickets/<%= context.ticketId %>",
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.freshdesk_api_key + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    },
+    "options": {}
+  },
+  "getBusinessHours": {
+    "schema": {
+      "protocol": "https",
+      "method": "GET",
+      "host": "<%= context.host %>",
+      "path": "/api/v2/business_hours",
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.freshdesk_api_key + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    },
+    "options": {}
+  },
+  "getBusinessHour": {
+    "schema": {
+      "protocol": "https",
+      "method": "GET",
+      "host": "<%= context.host %>",
+      "path": "/api/v2/business_hours/<%= context.businessHourId %>",
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.freshdesk_api_key + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    },
+    "options": {}
+  },
+  "getTicketFields": {
+    "schema": {
+      "protocol": "https",
+      "method": "GET",
+      "host": "<%= context.host %>",
+      "path": "/api/v2/ticket_fields",
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.freshdesk_api_key + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    },
+    "options": {}
+  },
+  "getAdminTicketFields": {
+    "schema": {
+      "protocol": "https",
+      "method": "GET",
+      "host": "<%= context.host %>",
+      "path": "/api/v2/admin/ticket_fields",
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.freshdesk_api_key + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    },
+    "options": {}
+  },
+  "searchTickets": {
+    "schema": {
+      "protocol": "https",
+      "method": "GET",
+      "host": "<%= context.host %>",
+      "path": "/api/v2/search/tickets?query=<%= context.query %>&page=<%= context.page %>",
+      "headers": {
+        "Authorization": "Basic <%= encode(iparam.freshdesk_api_key + ':X') %>",
+        "Content-Type": "application/json"
+      }
+    },
+    "options": {}
+  }
+}
