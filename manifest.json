@@ -1,0 +1,76 @@
+{
+  "platform-version": "3.0",
+  "modules": {
+    "common": {
+      "location": {
+        "full_page_app": {
+          "url": "index.html",
+          "icon": "styles/images/icon.svg"
+        }
+      },
+      "events": {
+        "onAppInstall": {
+          "handler": "onAppInstallCallback"
+        },
+        "onAppUninstall": {
+          "handler": "onAppUninstallCallback"
+        },
+        "onScheduledEvent": {
+          "handler": "onScheduledEventCallback"
+        }
+      },
+      "requests": {
+        "getTicket": {},
+        "updateTicket": {},
+        "getBusinessHours": {},
+        "getBusinessHour": {},
+        "getTicketFields": {},
+        "getAdminTicketFields": {},
+        "searchTickets": {}
+      },
+      "functions": {
+        "getSidebarData": {
+          "timeout": 30
+        },
+        "saveAutomationConfig": {
+          "timeout": 30
+        },
+        "saveAutomationEnabledState": {
+          "timeout": 30
+        },
+        "scheduleCurrentTicket": {
+          "timeout": 30
+        },
+        "cancelCurrentTicketAutomation": {
+          "timeout": 30
+        },
+        "scanAndScheduleTickets": {
+          "timeout": 30
+        },
+        "cancelAllTicketAutomations": {
+          "timeout": 30
+        }
+      }
+    },
+    "support_ticket": {
+      "location": {
+        "ticket_sidebar": {
+          "url": "index.html",
+          "icon": "styles/images/icon.svg"
+        }
+      },
+      "events": {
+        "onTicketCreate": {
+          "handler": "onTicketCreateCallback"
+        },
+        "onTicketUpdate": {
+          "handler": "onTicketUpdateCallback"
+        }
+      }
+    }
+  },
+  "engines": {
+    "node": "24.11.0",
+    "fdk": "10.1.0"
+  }
+}
